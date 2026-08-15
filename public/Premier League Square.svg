@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 104 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Artboard1" transform="matrix(1,0,0,1,-0.438297,-106.459)">
+        <rect x="0.438" y="106.459" width="103.657" height="101.103" style="fill:none;"/>
+        <g transform="matrix(1.07503,0,0,1.00687,-0.137208,102.667)">
+            <path d="M89.851,18.864C89.851,15.925 87.616,13.539 84.864,13.539L12.657,13.539C9.905,13.539 7.67,15.925 7.67,18.864L7.67,89.08C7.67,92.019 9.905,94.405 12.657,94.405L84.864,94.405C87.616,94.405 89.851,92.019 89.851,89.08L89.851,18.864Z" style="fill:rgb(90,0,204);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,1.78004,104.883)">
+            <g transform="matrix(1,0,0,1,-8.32766,5.69788)">
+                <text x="44.926px" y="46.193px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:14.667px;fill:white;">Premier</text>
+            </g>
+            <g transform="matrix(1.0371,0,0,1,-10.0342,16.6553)">
+                <text x="44.926px" y="46.193px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:14.667px;fill:white;">League</text>
+            </g>
+        </g>
+        <g id="premierlogo.png" transform="matrix(0.0643716,0,0,0.0643716,10.9574,140.563)">
+            <g transform="matrix(15.5348,-0,-0,15.5348,-163.413,-529.805)">
+                <use xlink:href="#_Image1" x="10.761" y="34.214" width="26.392px" height="31.897px" transform="matrix(0.977495,0,0,0.996784,0,0)"/>
+            </g>
+        </g>
+    </g>
+    <defs>
+        <image id="_Image1" width="27px" height="32px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAgCAYAAADjaQM7AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADIklEQVRIiaWWS4iWVRjHf884Xppxyk0uwssMI11GGCNEqChn08JoHWQJUUTkJrsgKi5E0YWgSC0KMowxaRMuA8FWhqEbg2o0KKdsDK/g1Fy8zHw/F+/5mtfXb97P7/v+8PI+5/b8z/M/5zznQANQF6jPFOpeasRHmfM+9bFc+UV1WI1UXqveVOerS1ole1wdVV9VQ/3cDAfUleqtVF6lftIK0SZ1Uc7hUXUs2VNqxRlcV9+t57O9pG0S+B24CcwDBoC/gfPACHAR6AWWAUuB3+qRRZ3oRoBrwAfAz8AS4AWgP01gFNiZJjYnIv6tR1hG1qb2q+edHRX1/WQPql3NkoU6R/204Hxc3at+lFvT6dQ2pT7fCMkOtUM9mwb/lxxeUJdWt37qO089pL6tLlZ/UY89aCTfpBn2Fnac6q6SsW3pP1d970HIPs45Xq7ezm31dWkN3zA72BfUN9UBdXHBz8J6RCsLkQyrl5I9qX6bIn9F/VE9o06kMV05P/tT//4y+YYsx5S6rjCuPcl+Qu1IdZ3qZ+pb6vJ8//xC9wA/AQ+XCDAJHAG+JzvsjwBXgQ+BCjAErEj2KsCI6K4V3bY6kZVhWj3pzDHQLEFX1PVFop4kUzM4ZJJLfUr9zmw9u81y6YQ6P0+2uwmSivpyDYU2ql8m+2jq2wfQllg3lqxTGcYKRHOBPrLEDHAj/bdUOzzXpHyapa3qLuxOElaxWT2V7DE12smuiBPAD8DWBiPrAHaojwIbgNPAs0APMMjMFdaZvv8leLqFCEfUdwqSniv06cpfnosajCqPAxHxhboAaAOmU3T38OfJbrdAttdso20H9gB/kl2uVUwA4zO0uqaGPIe9P/PXw8UaY47cG2P2bMvjkvqQ+keDZHmMmj2aniTpW8WVnF0BVkfEJPBPC/JeiYgbEXGuSHYdOAvcAZ6IiJFUf60Fsn2ztiQpewt1x5uU8LK55wMU3o0RMVRjDuW37uzYFhE2NEL9q4movmp4aupC9U4dxxX1oPpaKn+t1nxplz2/iYgxdQB4nSznLSPbVOPAr8BJYDAihs0yfmdEHJzN310vupFvQSLwuwAAAABJRU5ErkJggg=="/>
+    </defs>
+</svg>

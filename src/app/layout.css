@@ -1,0 +1,17 @@
+/* Additional layout styles */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Fix for 404 errors in browser console */
+@media screen and (max-width: 640px) {
+  .responsive-fix {
+    width: 100%;
+  }
+}
