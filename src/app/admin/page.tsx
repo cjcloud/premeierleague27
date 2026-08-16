@@ -2,7 +2,9 @@ import { getSession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 import { db } from '@/db';
 import { users } from '@/db/schema';
-import { EditCodeDialog } from '@/components/edit-code-dialog';
+import { asc } from 'drizzle-orm';
+import { UserFormDialog } from '@/components/user-form-dialog';
+import { DeleteUserDialog } from '@/components/delete-user-dialog';
 import { RefreshStandingsButton } from '@/components/refresh-standings-button';
 import { LastUpdatedIndicator } from '@/components/last-updated-indicator';
 import { getLastUpdateTimestamp } from '@/lib/db/queries/teams';
@@ -28,7 +30,7 @@ export default async function AdminPage() {
     redirect('/');
   }
 
-  const allUsers = await db.select().from(users);
+  const allUsers = await db.select().from(users).orderBy(asc(users.id));
   const lastUpdatedTimestamp = await getLastUpdateTimestamp();
 
   return (
@@ -40,16 +42,21 @@ export default async function AdminPage() {
         </div>
         <RefreshStandingsButton />
       </div>
-      
-      <h2 className="text-xl font-bold mb-4">Manage Access Codes</h2>
+
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">Manage Users</h2>
+        <UserFormDialog mode="add" />
+      </div>
       <Table>
-        <TableCaption>A list of all users and their access codes.</TableCaption>
+        <TableCaption>
+          Users log in with their access code. Set and change codes here — no passwords.
+        </TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">ID</TableHead>
+            <TableHead className="w-[80px]">ID</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Access Code</TableHead>
-            <TableHead>Is Admin</TableHead>
+            <TableHead>Admin</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -58,10 +65,15 @@ export default async function AdminPage() {
             <TableRow key={user.id}>
               <TableCell className="font-medium">{user.id}</TableCell>
               <TableCell>{user.name}</TableCell>
-              <TableCell>{user.accessCode}</TableCell>
+              <TableCell className="font-mono">{user.accessCode}</TableCell>
               <TableCell>{user.isAdmin ? 'Yes' : 'No'}</TableCell>
               <TableCell className="text-right">
-                <EditCodeDialog userId={user.id} currentCode={user.accessCode} />
+                <div className="flex justify-end gap-2">
+                  <UserFormDialog mode="edit" user={user} />
+                  {session.id !== user.id && (
+                    <DeleteUserDialog userId={user.id} userName={user.name} />
+                  )}
+                </div>
               </TableCell>
             </TableRow>
           ))}
