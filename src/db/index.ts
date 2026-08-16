@@ -14,13 +14,19 @@ import * as schema from './schema';
 // credentials. Set it in .env.local locally and in the Vercel project settings in prod.
 const databaseURL = process.env.DATABASE_URL;
 
-if (!databaseURL) {
-  throw new Error('DATABASE_URL is not set. Add it to .env.local (and Vercel env vars).');
+// During `next build`, Next imports route modules to collect page data. Throwing at
+// import time then would fail the build before env vars are ever used at runtime.
+// A missing DATABASE_URL is still a real error at request time, where we fail loudly.
+const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
+
+if (!databaseURL && !isBuildPhase) {
+  throw new Error(
+    'DATABASE_URL is not set. Add it to .env.local (and the Vercel project env vars).'
+  );
 }
 
-const sql = neon(databaseURL);
+// The placeholder is only ever reached during the build phase; real requests use the
+// value from the environment.
+const sql = neon(databaseURL || 'postgresql://build:build@localhost/build');
 
 export const db = drizzle(sql, { schema });
-
-// Database connection initialized
-
