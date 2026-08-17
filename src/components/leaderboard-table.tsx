@@ -79,7 +79,12 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
             <th
               key={user.id}
               colSpan={showPoints ? 2 : 1}
-              className="text-center py-1 sm:py-2 px-1 sm:px-2 text-xs sm:text-base font-semibold border-l-2 border-gray-200 dark:border-gray-600"
+              title={user.name}
+              className={`text-center py-1 sm:py-2 px-1 font-semibold border-l-2 border-gray-200 dark:border-gray-600 ${
+                showPoints
+                  ? 'sm:px-2 text-xs sm:text-base'
+                  : 'w-8 max-w-8 truncate text-[9px] xs:text-[10px]'
+              }`}
             >
               {user.name}
             </th>
