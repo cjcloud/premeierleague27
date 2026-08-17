@@ -58,22 +58,27 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
   // Sort users by points (already done on server)
   const sortedUsers = users;
 
-  // Renders the leaderboard table. In compact mode (portrait phones) each user gets a
-  // single "Predicted position" column — the cell's background colour already encodes
-  // the points earned (green/yellow/red, per the legend), so the separate Pts number is
-  // dropped to roughly halve the table's width. Landscape/tablet+ shows both columns.
-  const renderTable = (showPoints: boolean) => (
+  // Renders the leaderboard table with a given set of columns actually present in the
+  // DOM (not just visually hidden — a column whose cells are all `display:none` doesn't
+  // reliably collapse its width under table-auto layout, so each variant below is a
+  // genuinely narrower table rather than the full table with bits hidden via CSS).
+  //   showPos:    include the "Pos" column
+  //   showPoints: include a separate "Pts" column per user (predicted position always
+  //               shows; when this is off, the cell's colour alone conveys the points —
+  //               see the legend above the table)
+  const renderTable = (showPos: boolean, showPoints: boolean) => (
     <table className="w-full text-[10px] xs:text-xs sm:text-sm bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md table-auto">
       <thead>
         <tr className="bg-gray-100 dark:bg-gray-800 border-b dark:border-gray-700">
-          <th rowSpan={showPoints ? 2 : 1} className={`text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8 ${!showPoints ? 'max-[479px]:hidden' : ''}`}>Pos</th>
+          {showPos && (
+            <th rowSpan={showPoints ? 2 : 1} className="text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8">Pos</th>
+          )}
           <th rowSpan={showPoints ? 2 : 1} className="text-left py-1 sm:py-2 px-1 sm:px-2 pl-7 text-xs sm:text-base font-semibold align-middle w-40 sm:w-60">Team</th>
           <th rowSpan={showPoints ? 2 : 1} className="text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8">Prem Pts</th>
           {sortedUsers.map(user => (
             <th
               key={user.id}
               colSpan={showPoints ? 2 : 1}
-              rowSpan={showPoints ? 1 : 1}
               className="text-center py-1 sm:py-2 px-1 sm:px-2 text-xs sm:text-base font-semibold border-l-2 border-gray-200 dark:border-gray-600"
             >
               {user.name}
@@ -94,10 +99,11 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
       <tbody>
         {sortedTeams.map((team, index) => (
           <tr key={team.id} className={`${index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-800'} border-b dark:border-gray-700`}>
-            {/* Current Position Column - Explicitly display with fallback */}
-            <td className={`text-center py-1 sm:py-2 px-0 sm:px-1 font-bold text-xs sm:text-base w-8 ${!showPoints ? 'max-[479px]:hidden' : ''}`}>
-              {typeof team.actualPosition === 'number' ? team.actualPosition : '-'}
-            </td>
+            {showPos && (
+              <td className="text-center py-1 sm:py-2 px-0 sm:px-1 font-bold text-xs sm:text-base w-8">
+                {typeof team.actualPosition === 'number' ? team.actualPosition : '-'}
+              </td>
+            )}
             <td className="py-0 sm:py-1 px-1 sm:px-2 pl-7 w-40 sm:w-60">
               <div className="flex items-center h-6 sm:h-7">
                 <div className="flex-none w-5 h-5 flex justify-center">
@@ -154,11 +160,7 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
           </tr>
         ))}
         <tr className="bg-gray-300 dark:bg-gray-700 font-bold">
-          {/* Dedicated (blank) Pos cell so this row can collapse that column the same way
-              the header/body rows do — a colSpan across Pos would force the browser to keep
-              reserving its width even once the header/body Pos cells are hidden. */}
-          <td className={`${!showPoints ? 'max-[479px]:hidden' : ''}`}></td>
-          <td colSpan={2} className="text-right py-0 px-4">Total Points</td>
+          <td colSpan={showPos ? 3 : 2} className="text-right py-0 px-4">Total Points</td>
           {sortedUsers.map(user => (
             <td
               key={`${user.id}-total-score`}
@@ -198,13 +200,21 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
           </div>
         </div>
 
-        {/* Portrait phones: compact table, Predicted position only (colour = points). */}
-        <div className="landscape:hidden">
-          {renderTable(false)}
+        {/* Each variant below is a genuinely separate table (no columns, not just hidden
+            cells), so table-auto layout only ever computes widths for the columns that
+            are actually present and the freed-up space really gets redistributed. */}
+
+        {/* Portrait, narrow (<480px / below the xs breakpoint): no Pos, no Pts — smallest footprint. */}
+        <div className="hidden portrait:max-[479px]:block">
+          {renderTable(false, false)}
         </div>
-        {/* Landscape / tablet+ / desktop: full table with separate Points column. */}
+        {/* Portrait, xs and wider (>=480px, still portrait): Pos shown, Pts still dropped. */}
+        <div className="hidden portrait:xs:block">
+          {renderTable(true, false)}
+        </div>
+        {/* Landscape (any width): full table, Pos + Pts. */}
         <div className="hidden landscape:block">
-          {renderTable(true)}
+          {renderTable(true, true)}
         </div>
       </div>
     </div>
