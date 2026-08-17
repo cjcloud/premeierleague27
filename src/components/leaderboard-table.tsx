@@ -71,10 +71,10 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
       <thead>
         <tr className="bg-gray-100 dark:bg-gray-800 border-b dark:border-gray-700">
           {showPos && (
-            <th rowSpan={showPoints ? 2 : 1} className="text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8">Pos</th>
+            <th rowSpan={showPoints ? 2 : 1} className={`text-center py-1 sm:py-2 px-0 sm:px-1 text-xs font-semibold align-middle w-8 ${showPoints ? 'sm:text-sm' : 'sm:text-base'}`}>Pos</th>
           )}
-          <th rowSpan={showPoints ? 2 : 1} className={`text-left py-1 sm:py-2 px-1 sm:px-2 text-xs sm:text-base font-semibold align-middle ${showPos ? 'w-40 sm:w-60' : 'w-16'}`}>Team</th>
-          <th rowSpan={showPoints ? 2 : 1} className="text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8">Prem Pts</th>
+          <th rowSpan={showPoints ? 2 : 1} className={`text-left py-1 sm:py-2 px-1 sm:px-2 text-xs font-semibold align-middle ${showPoints ? 'sm:text-sm' : 'sm:text-base'} ${showPos ? 'w-40 sm:w-60' : 'w-16'}`}>Team</th>
+          <th rowSpan={showPoints ? 2 : 1} className={`text-center py-1 sm:py-2 px-0 sm:px-1 text-xs font-semibold align-middle w-8 ${showPoints ? 'sm:text-sm' : 'sm:text-base'}`}>Prem Pts</th>
           {sortedUsers.map(user => (
             <th
               key={user.id}
@@ -82,7 +82,7 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
               title={user.name}
               className={`text-center py-1 px-1 font-semibold border-l-2 border-gray-200 dark:border-gray-600 align-bottom ${
                 showPoints
-                  ? 'sm:py-2 sm:px-2 text-xs sm:text-base'
+                  ? 'sm:py-2 sm:px-2 text-xs sm:text-sm'
                   : 'w-8 text-[9px] xs:text-[10px]'
               }`}
             >
