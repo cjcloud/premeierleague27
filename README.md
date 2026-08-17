@@ -9,17 +9,21 @@ This is a prediction application for the Premier League 2026/27 season. The appl
 - User predictions for Premier League team positions
 - Real-time standings from the official Premier League API
 - Smart API update mechanism (only fetches new data when older than 3 minutes)
-- Leaderboard showing user scores based on prediction accuracy
+- Leaderboard showing user scores based on prediction accuracy, colour-coded by accuracy
 - Point calculation system with bonuses for correct predictions
-- Admin interface for managing data
-- Responsive design for mobile and desktop
+- Admin interface for adding/editing/deleting users and access codes (no passwords), and for
+  force-refreshing standings
+- Orientation-aware responsive leaderboard (portrait shows a compact layout that fits all
+  users on one screen without horizontal scrolling; landscape shows the full table)
+- App icon/favicon matches the in-app badge logo
 
 ## Technical Details
 
 ### Frontend
 - Next.js 14.2.5 with App Router
 - TypeScript for type safety
-- TailwindCSS for styling with Radix UI components (Emerald & Teal theme)
+- TailwindCSS for styling with Radix UI components (Forest theme — deep green, club red,
+  cream — implemented as CSS custom properties in `src/app/globals.css`)
 - React Hook Form for form handling
 
 ### Backend
@@ -84,9 +88,10 @@ production branch. Preview deployments are created automatically for pull reques
 
 ## Season Information
 
-This is the Premier League **2026/27** edition. The season kicks off on **Saturday 22
-August 2026** (opening fixture Friday 21 August 2026), and predictions lock at the first
-match kickoff (see `PREDICTIONS_DEADLINE` in `src/lib/time-utils.ts`).
+This is the Premier League **2026/27** edition. The season's opening fixture is
+**Friday 21 August 2026, 20:00 BST** (Arsenal v Coventry City), and predictions lock at
+that kickoff (see `PREDICTIONS_DEADLINE` in `src/lib/time-utils.ts` — both the home page
+and predictions page render this dynamically, so it only needs updating in one place).
 
 To carry the app forward to a future season, change `SEASON_ID` in `src/lib/api.ts` and
 the `PREDICTIONS_DEADLINE` in `src/lib/time-utils.ts`, then stand up a fresh database.
