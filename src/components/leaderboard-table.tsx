@@ -80,13 +80,21 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
               key={user.id}
               colSpan={showPoints ? 2 : 1}
               title={user.name}
-              className={`text-center py-1 sm:py-2 px-1 font-semibold border-l-2 border-gray-200 dark:border-gray-600 ${
+              className={`text-center py-1 px-1 font-semibold border-l-2 border-gray-200 dark:border-gray-600 align-bottom ${
                 showPoints
-                  ? 'sm:px-2 text-xs sm:text-base'
-                  : 'w-8 max-w-8 truncate text-[9px] xs:text-[10px]'
+                  ? 'sm:py-2 sm:px-2 text-xs sm:text-base'
+                  : 'w-8 text-[9px] xs:text-[10px]'
               }`}
             >
-              {user.name}
+              {showPoints ? (
+                user.name
+              ) : (
+                // Vertical text keeps the column as narrow as the numeric data below it —
+                // reads bottom-to-top (rotate-180 flips vertical-rl's default top-to-bottom).
+                <span className="inline-block [writing-mode:vertical-rl] rotate-180 whitespace-nowrap py-0.5">
+                  {user.name}
+                </span>
+              )}
             </th>
           ))}
         </tr>
