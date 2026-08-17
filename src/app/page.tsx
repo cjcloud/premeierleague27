@@ -1,23 +1,25 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { getFormattedDeadline } from '@/lib/time-utils';
 
 export default function Home() {
+  const formattedDeadline = getFormattedDeadline();
   return (
-    <main className="container max-w-2xl mx-auto px-4 py-8" style={{ marginTop: '30px' }}>
+    <main className="max-w-2xl mx-auto px-2 sm:px-4 py-8" style={{ marginTop: '30px' }}>
       <div className="flex flex-col items-center justify-center gap-6 ">
         <div className="">
         <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-bold leading-tight">Welcome to</p>
             <Image 
-                src="/PremieLeaguePredictions.svg" 
-                width={270} 
-                height={90} 
-                alt="Predictions" 
-                className=" h-auto pt-0" 
+                src="/PremierLeaguePredictionsLogo.svg" 
+                width={270}
+                height={186}
+                alt="Premier League Predictions"
+                className="w-[190px] sm:w-[230px] h-auto pt-0"
             />        
         </div>
-        <p className="text-emerald-700 font-medium text-sm sm:text-md md:text-md text-center max-w-md">
-          Get your predictions in before the 2026/27 season kicks off on Saturday 22 August 2026
+        <p className="text-[#253635] font-medium text-sm sm:text-md md:text-md text-left max-w-md">
+          Get your predictions in before the 2026/27 season kicks off on {formattedDeadline}
         </p>
         <div className="sm:text-xs md:text-md flex gap-4">
           <Link href="/predictions">
@@ -27,7 +29,7 @@ export default function Home() {
             <Button variant="outline" size="default" className="sm:text-[10px] md:text-md lg:text-[14px]">View Leaderboard</Button>
           </Link>
         </div>
-      <div className="mx-auto py-4 px-4 rounded-lg bg-slate-200">
+      <div className="mx-auto py-4 px-4 rounded-lg bg-secondary text-secondary-foreground border border-border">
         <p className="text-xs sm:text-[6px] md:text-[12px] lg:text-[14px] font-bold">Points System</p>
         <p className="text-xs sm:text-[6px] md:text-[12px] lg:text-[14px]">Correct prediction = 2 points</p> 
         <p className="text-xs sm:text-[6px] md:text-[12px] lg:text-[14px]">Near miss = 1 point</p>

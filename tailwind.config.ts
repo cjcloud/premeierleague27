@@ -9,15 +9,11 @@ const config = {
     './src/**/*.{ts,tsx,js,jsx}',
   ],
   safelist: [
-    'bg-emerald-50',
-    'bg-emerald-100',
-    'bg-teal-800',
-    'dark:bg-teal-800',
-    'dark:bg-teal-900',
-    'bg-teal-100',
-    'text-emerald-600',
-    'text-emerald-700',
-    'dark:text-emerald-400',
+    // Leaderboard proximity cell colours (green = exact, yellow = ±1, red = off/bonus).
+    'bg-green-400', 'dark:bg-green-600',
+    'bg-yellow-400', 'dark:bg-yellow-600',
+    'bg-red-200', 'dark:bg-red-400',
+    'bg-red-400', 'dark:bg-red-600',
   ],
   prefix: "",
   theme: {
@@ -25,10 +21,16 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
+         "xs": "480px",
         "2xl": "1400px",
       },
     },
     extend: {
+      // `xs` as a utility breakpoint (480px) so xs:* classes work app-wide
+      // (home tagline, leaderboard sizing). container.screens above does NOT do this.
+      screens: {
+        xs: "480px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -67,17 +67,17 @@ export default function Header({ session }: { session: Session }) {
       <Link href="/" onClick={handleLinkClick} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">Home</Link>
       <Link href="/leaderboard" onClick={handleLinkClick} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">Leaderboard</Link>
       {session.isLoggedIn && session.isAdmin && (
-        <Link href="/admin" onClick={handleLinkClick} className="text-sm font-medium text-emerald-600 dark:text-emerald-400 font-semibold transition-colors hover:text-emerald-800 dark:hover:text-emerald-300">Admin</Link>
+        <Link href="/admin" onClick={handleLinkClick} className="text-sm font-medium text-destructive font-semibold transition-colors hover:opacity-80">Admin</Link>
       )}
     </>
   );
 
   return (
-    <header className="bg-emerald-50 dark:bg-teal-900 border-b border-emerald-100 dark:border-teal-800 px-4 py-3 sticky top-0 z-50 shadow-sm">
-      <div className="container ml-0 mr-0 my-auto flex justify-between items-center">
+    <header className="bg-card border-b-2 border-destructive px-4 py-3 sticky top-0 z-50 shadow-sm">
+      <div className="w-full px-2 sm:px-4 my-auto flex justify-between items-center">
         <div className="flex items-center gap-3">
           <Link href="/" onClick={handleLinkClick}>
-            <Image src="/Premier League Square.svg" width={50} height={50} alt="Premier League Logo" className='w-50 h-50 md:w-50 md:h-50 lg:w-189 lg:h-63'/>
+            <Image src="/Premier League Square.svg" width={36} height={36} alt="Premier League Logo" className="w-9 h-9 sm:w-10 sm:h-10"/>
           </Link>
         </div>
 
