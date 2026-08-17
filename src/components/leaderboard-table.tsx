@@ -154,7 +154,11 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
           </tr>
         ))}
         <tr className="bg-gray-300 dark:bg-gray-700 font-bold">
-          <td colSpan={3} className="text-right py-0 px-4">Total Points</td>
+          {/* Dedicated (blank) Pos cell so this row can collapse that column the same way
+              the header/body rows do — a colSpan across Pos would force the browser to keep
+              reserving its width even once the header/body Pos cells are hidden. */}
+          <td className={`${!showPoints ? 'max-[479px]:hidden' : ''}`}></td>
+          <td colSpan={2} className="text-right py-0 px-4">Total Points</td>
           {sortedUsers.map(user => (
             <td
               key={`${user.id}-total-score`}
