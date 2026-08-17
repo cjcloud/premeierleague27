@@ -150,9 +150,9 @@ const LeaderboardPage = async () => {
   const sortedUsers = [...processedUsers].sort((a, b) => b.points - a.points);
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-center md:text-left">Leaderboard</h1>
+    <div className="w-full px-2 sm:px-4 lg:px-6 py-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+        <h1 className="text-3xl font-bold text-center sm:text-left">Leaderboard</h1>
         <div className="flex items-center">
           <RefreshLeaderboardButton />
         </div>

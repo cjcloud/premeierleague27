@@ -72,7 +72,7 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
 
   return (
     <div className="w-full overflow-auto">
-      <div className="max-w-[840px] mx-auto">
+      <div className="w-full">
         {/* Color Legend - One line with responsive sizing */}
         <div className="mb-4 flex justify-center overflow-x-auto whitespace-nowrap py-1">
           <div className="flex items-center space-x-3 md:space-x-4 text-[8px] xs:text-[9px] sm:text-xs">
