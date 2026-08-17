@@ -23,8 +23,8 @@ export default async function PredictionsPage() {
   const formattedDeadline = getFormattedDeadline();
 
   return (
-    <div className="container mx-auto py-10">
-      <p className="text-lg text-gray-600 dark:text-gray-300 mb-2">Welcome, {session.name}!</p>
+    <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 md:px-6 py-6 sm:py-10">
+      <p className="text-lg text-muted-foreground mb-2">Welcome, {session.name}!</p>
       {deadlinePassed ? (
         <div className="relative">
           <div className="absolute inset-0 bg-black/70 z-10 flex items-center justify-center rounded-lg">

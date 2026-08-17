@@ -22,7 +22,7 @@ export default function LoginPage() {
   const [state, formAction] = useFormState(login, undefined);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="flex min-h-screen flex-col items-center justify-center px-4 py-12 sm:py-24">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
