@@ -33,8 +33,9 @@ export async function middleware(request: NextRequest) {
 
     // Default to not authenticated if no cookie exists
     if (!sessionCookie?.value) {
-      // Redirect to home page
-      return NextResponse.redirect(new URL('/', request.url));
+      // Send logged-out users to the login page (not home — home is where they
+      // just clicked "Make Predictions" from, so redirecting there looks inert).
+      return NextResponse.redirect(new URL('/login', request.url));
     }
 
     try {
@@ -45,12 +46,12 @@ export async function middleware(request: NextRequest) {
 
       // Check if user is logged in
       if (!session.isLoggedIn) {
-        // Redirect logged-out users to the home page
-        return NextResponse.redirect(new URL('/', request.url));
+        // Redirect logged-out users to the login page
+        return NextResponse.redirect(new URL('/login', request.url));
       }
     } catch (error) {
-      // Invalid or expired session, redirect to home
-      return NextResponse.redirect(new URL('/', request.url));
+      // Invalid or expired session, redirect to login
+      return NextResponse.redirect(new URL('/login', request.url));
     }
   }
 
