@@ -66,7 +66,7 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
     <table className="w-full text-[10px] xs:text-xs sm:text-sm bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md table-auto">
       <thead>
         <tr className="bg-gray-100 dark:bg-gray-800 border-b dark:border-gray-700">
-          <th rowSpan={showPoints ? 2 : 1} className="text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8">Pos</th>
+          <th rowSpan={showPoints ? 2 : 1} className={`text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8 ${!showPoints ? 'max-[479px]:hidden' : ''}`}>Pos</th>
           <th rowSpan={showPoints ? 2 : 1} className="text-left py-1 sm:py-2 px-1 sm:px-2 pl-7 text-xs sm:text-base font-semibold align-middle w-40 sm:w-60">Team</th>
           <th rowSpan={showPoints ? 2 : 1} className="text-center py-1 sm:py-2 px-0 sm:px-1 text-xs sm:text-base font-semibold align-middle w-8">Prem Pts</th>
           {sortedUsers.map(user => (
@@ -95,7 +95,7 @@ export default function LeaderboardTable({ teams, users }: LeaderboardTableProps
         {sortedTeams.map((team, index) => (
           <tr key={team.id} className={`${index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-800'} border-b dark:border-gray-700`}>
             {/* Current Position Column - Explicitly display with fallback */}
-            <td className="text-center py-1 sm:py-2 px-0 sm:px-1 font-bold text-xs sm:text-base w-8">
+            <td className={`text-center py-1 sm:py-2 px-0 sm:px-1 font-bold text-xs sm:text-base w-8 ${!showPoints ? 'max-[479px]:hidden' : ''}`}>
               {typeof team.actualPosition === 'number' ? team.actualPosition : '-'}
             </td>
             <td className="py-0 sm:py-1 px-1 sm:px-2 pl-7 w-40 sm:w-60">
