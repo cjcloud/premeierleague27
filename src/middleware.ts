@@ -26,26 +26,26 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
   
-  // Restrict /predictions route to admin users only
+  // Restrict /predictions route to logged-in users (any user, not just admins)
   if (pathname.startsWith('/predictions')) {
     // Get session cookie
     const sessionCookie = request.cookies.get(sessionOptions.cookieName);
-    
+
     // Default to not authenticated if no cookie exists
     if (!sessionCookie?.value) {
       // Redirect to home page
       return NextResponse.redirect(new URL('/', request.url));
     }
-    
+
     try {
       // Attempt to unseal the session data
       const session = await unsealData<SessionData>(sessionCookie.value, {
         password: sessionOptions.password,
       });
-      
-      // Check if user is logged in and is an admin
-      if (!session.isLoggedIn || !session.isAdmin) {
-        // Redirect non-admin users to the home page
+
+      // Check if user is logged in
+      if (!session.isLoggedIn) {
+        // Redirect logged-out users to the home page
         return NextResponse.redirect(new URL('/', request.url));
       }
     } catch (error) {
