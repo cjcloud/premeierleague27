@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { getFormattedDeadline } from '@/lib/time-utils';
 
 export default function Home() {
-  const formattedDeadline = getFormattedDeadline();
   return (
     <main className="max-w-2xl mx-auto px-2 sm:px-4 py-8" style={{ marginTop: '30px' }}>
       <div className="flex flex-col items-center justify-center gap-6 ">
@@ -19,12 +17,9 @@ export default function Home() {
             />        
         </div>
         <p className="text-[#253635] font-medium text-sm sm:text-md md:text-md text-left max-w-md">
-          Get your predictions in before the 2026/27 season kicks off on {formattedDeadline}
+          All predictions are in. Let&apos;s see how they do!
         </p>
         <div className="sm:text-xs md:text-md flex gap-4">
-          <Link href="/predictions">
-            <Button size="default" className="sm:text-[10px] md:text-md lg:text-[14px]">Make Predictions</Button>
-          </Link>
           <Link href="/leaderboard">
             <Button variant="outline" size="default" className="sm:text-[10px] md:text-md lg:text-[14px]">View Leaderboard</Button>
           </Link>
